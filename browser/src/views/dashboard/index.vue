@@ -6,22 +6,20 @@
         <img class="pan-thumb" :src="avatar">
       </div>
       <div class="info-container">
-        <!--<span class="display_name">{{nick}}</span>-->
+        <!--<span class="display_name">{{realName}}</span>-->
         <div style="font-size: 38px;line-height: 38px;color: #212121;padding-top: 15px;">
-          {{nick}}
+          {{realName}}
         </div>
         <div>
           <span style="font-size:20px;padding-top:20px;display:inline-block;">角色：</span>
           <el-tag style="margin-right: 5px;" type="danger" v-if="roles.length==0" >游客（未配置任何角色）</el-tag>
-          <el-tag style="margin-right: 5px;" type="success" v-else v-for="r in roles" :key="r.val">{{r.name}}</el-tag>
+          <el-tag style="margin-right: 5px;" type="success" v-else v-for="r in roles" :key="r.roleVal">{{r.roleName}}</el-tag>
         </div>
         <div>
           <span style="font-size:20px;padding-top:20px;display:inline-block;">权限：</span>
           <el-tag style="margin-right: 5px;" type="danger" v-if="perms.length==0">未配置任何权限</el-tag>
-          <el-tag style="margin-right: 5px;" type="info" v-else v-for="r in perms" :key="r.val">{{r.name}}</el-tag>
+          <el-tag style="margin-right: 5px;" type="info" v-else v-for="r in perms" :key="r.roleVal">{{r.roleName}}</el-tag>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -42,8 +40,8 @@
     },
     computed: {
       ...mapGetters([
-        'name',
-        'nick',
+        'userName',
+        'realName',
         'avatar',
         'roles',
         'perms'

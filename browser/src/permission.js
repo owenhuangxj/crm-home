@@ -15,11 +15,11 @@ NProgress.configure({ showSpinner: false })// NProgress Configuration
  */
 function hasPermission(userPerms, routerPerm) {
   //特殊值，*代表所有资源权限
-  if(userPerms.some(p=>p.val=="*")) return true;
+  if(userPerms.some(p=>p.permVal=="*")) return true;
   //如果菜单路由上没有声明perm属性，默认显示该菜单，代表所有人可以访问
   if(!routerPerm) return true;
   //判断用户的资源权限集合中是否包含该菜单路由声明的资源权限
-  return userPerms.some(p=>p.val==routerPerm)
+  return userPerms.some(p=>p.permVal==routerPerm)
 }
 
 const loginRoute = "/login"

@@ -8,8 +8,8 @@ const user = {
     status: '',
     code: '',
     token: getToken(),
-    name: '',
-    nick: '',
+    userName: '',
+    realName: '',
     avatar: avatorImg,
     introduction: '',
     visitor: false,
@@ -36,11 +36,11 @@ const user = {
     SET_STATUS: (state, status) => {
       state.status = status
     },
-    SET_NAME: (state, name) => {
-      state.name = name
+    SET_USERNAME: (state, userName) => {
+      state.userName = userName
     },
-    SET_NICK: (state, nick) => {
-      state.nick = nick
+    SET_REALNAME: (state, realName) => {
+      state.realName = realName
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -58,7 +58,7 @@ const user = {
 
   actions: {
     // 用户名登录
-    LoginByUsernameAndPassword({ commit }, userInfo) {
+    userLogin({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         authApi.loginAction(username, userInfo.password).then(response => {
@@ -88,8 +88,8 @@ const user = {
           }
           commit('SET_ROLES', res.data.roles)
           commit('SET_PERMS', res.data.perms)
-          commit('SET_NICK', res.data.nick)
-          commit('SET_NAME', res.data.name)
+          commit('SET_REALNAME', res.data.realName)
+          commit('SET_USERNAME', res.data.userName)
           resolve(res)
         }).catch(error => {
           reject(error)
@@ -128,7 +128,7 @@ const user = {
         authApi.getUserInfo(role).then(response => {
           const data = response.data
           commit('SET_ROLES', data.roles)
-          commit('SET_NAME', data.name)
+          commit('SET_USERNAME', data.name)
           commit('SET_AVATAR', data.avatar)
           commit('SET_INTRODUCTION', data.introduction)
           resolve()
